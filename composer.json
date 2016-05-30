@@ -1,0 +1,14 @@
+{
+    "name": "runewell/crypto-clients",
+    "description": "A series of crypto-currency clients to query nodes.",
+    "require": {
+        "fguillot/json-rpc": "^1.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Runewell",
+            "email": "me@runewell.com"
+        }
+    ]
+}
