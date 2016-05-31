@@ -16,13 +16,18 @@ class CryptoClients
      *
      * @param [type] $configArr [description]
      */
-    public function __construct($configArr)
+    public function __construct($configArr=[])
     {
         if (isset($configArr['ethereum']))
         {
-            $this->eth = new EthereumClient($configArr['ethereum']['node']);    
+            //$this->eth = new EthereumClient($configArr['ethereum']['node']);
         }
 
         return $this;
+    }
+
+    public function test()
+    {
+        print 'test';
     }
 }
