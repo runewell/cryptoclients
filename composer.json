@@ -13,6 +13,8 @@
     ],
     "minimum-stability": "stable",
     "autoload": {
-        "Runewell\\CryptoClients\\": "src/"
+        "psr-4": {
+            "Runewell\\CryptoClients\\": "src/"
+        }
     }
 }
