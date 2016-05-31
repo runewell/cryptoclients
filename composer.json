@@ -11,7 +11,7 @@
             "email": "me@runewell.com"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "autoload": {
         "classmap": [
             "runewell/"
