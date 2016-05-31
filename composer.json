@@ -1,5 +1,5 @@
 {
-    "name": "runewell/crypto-clients",
+    "name": "runewell/cryptoclients",
     "description": "A series of crypto-currency clients to query nodes.",
     "require": {
         "fguillot/json-rpc": "^1.2"
