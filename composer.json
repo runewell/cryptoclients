@@ -13,8 +13,8 @@
     ],
     "minimum-stability": "stable",
     "autoload": {
-        "psr-4": {
-            "Runewell\\": "src/"
+        "classmap": {
+            "runewell/"
         }
     }
 }
