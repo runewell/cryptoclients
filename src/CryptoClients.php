@@ -1,14 +1,28 @@
 <?php
 
+namespace Runewell\CryptoClients;
+
 class CryptoClients
 {
+    /**
+     * The Cryptos being used.
+     *
+     * @var eth Ethereum
+     */
     protected $eth;
 
     /**
-     * Launch the generic crypto class.
+     * Create CryptoClients object
+     *
+     * @param [type] $configArr [description]
      */
-    public function __construct()
+    public function __construct($configArr)
     {
-        $this->eth = new EthereumClient(Config::get('crypto-clients.ethereum.node'));
+        if (isset($configArr['ethereum']))
+        {
+            $this->eth = new EthereumClient($configArr['ethereum']['node']);    
+        }
+
+        return $this;
     }
 }

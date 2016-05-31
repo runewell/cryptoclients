@@ -13,6 +13,6 @@
     ],
     "minimum-stability": "stable",
     "autoload": {
-        "classmap": ["src/"]
+        "Runewell\\CryptoClients\\": "src/"
     }
 }
