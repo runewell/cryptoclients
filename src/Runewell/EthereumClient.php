@@ -1,5 +1,7 @@
 <?php
 
+namespace Runewell;
+
 use JsonRPC\Client;
 
 class EthereumClient

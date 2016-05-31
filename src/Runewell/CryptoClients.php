@@ -1,6 +1,6 @@
 <?php
 
-namespace Runewell\CryptoClients;
+namespace Runewell;
 
 class CryptoClients
 {
