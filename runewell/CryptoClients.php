@@ -22,7 +22,6 @@ class CryptoClients
         {
             //$this->eth = new EthereumClient($configArr['ethereum']['node']);
         }
-
         return $this;
     }
 
