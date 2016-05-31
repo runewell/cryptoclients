@@ -10,5 +10,9 @@
             "name": "Runewell",
             "email": "me@runewell.com"
         }
-    ]
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "classmap": ["src/"]
+    }
 }

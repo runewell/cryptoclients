@@ -1,19 +1,16 @@
 <?php
 
-namespace Runewell;
-
 use JsonRPC\Client;
 
-class EthereumClient {
-
-	protected $test = 'this is a test';
-
-	public function __construct($str) {
-		$this->str = $str;
-	}
-
-	public function printit($str) {
-		print ($str) ? $str : $this->test;
-	}
-
+class EthereumClient
+{
+    /**
+     * Construct Ethereum client instance.
+     *
+     * @param $url Ethereum node URL
+     */
+    public function __construct($url)
+    {
+        return new Client($url);
+    }
 }
