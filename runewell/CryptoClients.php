@@ -20,8 +20,7 @@ class CryptoClients
     {
         if (isset($configArr['ethereum']))
         {
-            $this->eth = 'testing ethereum';
-            //$this->eth = new EthereumClient($configArr['ethereum']['node']);
+            $this->eth = new EthereumClient($configArr['ethereum']['node']);
         }
 
         return $this;
