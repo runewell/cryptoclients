@@ -9,7 +9,7 @@ class CryptoClients
      *
      * @var eth Ethereum
      */
-    protected $eth;
+    public $eth;
 
     /**
      * Create CryptoClients object
