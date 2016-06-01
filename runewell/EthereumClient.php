@@ -72,9 +72,9 @@ class EthereumClient
       * @param  String or array $params  Optional parameters to pass to RPC
       * @return String
       */
-     public function exec($command, $params)
+     public function exec($command, $params='')
      {
-         return $this->main->execute($command, $params);
+         return ($params=='') ? $this->main->execute($command) : $this->main->execute($command, $params);
      }
 
     /**
