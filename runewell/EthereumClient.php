@@ -59,6 +59,12 @@ class EthereumClient
          return (float)$dec;
      }
 
+     /**
+      * Obtain an Address Account balance
+      * @param  string $address  account address
+      * @param  string $unitType unit of coin measurement
+      * @return String           hex string returned
+      */
      public function getAccountBalance($address, $unitType='ether')
      {
          $result = $this->exec('eth_getBalance', [$address, 'latest']);
