@@ -62,7 +62,7 @@ class EthereumClient
      public function getAccountBalance($address, $unitType='ether')
      {
          $result = $this->exec('eth_getBalance', [$address, 'latest']);
-         $balance = hexToFloat($result) / (float)$this->unitMap[$unitType];
+         $balance = $this->hexToFloat($result) / (float)$this->unitMap[$unitType];
          return $balance;
      }
 
