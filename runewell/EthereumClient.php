@@ -74,7 +74,7 @@ class EthereumClient
       */
      public function exec($command, $params)
      {
-         return $this->main->exec($command, $params);
+         return $this->main->execute($command, $params);
      }
 
     /**
