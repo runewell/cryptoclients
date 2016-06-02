@@ -2,92 +2,23 @@
 
 namespace Runewell;
 
-use JsonRPC\Client;
-
 class EthereumClient
 {
     /**
      * Initial Variables
      */
      protected $config;
-     protected $rpc;
-     protected $web3 = [];
-
-    /**
-     * Ethereum Unit Map
-     */
-     public $unitMap = [
-         'noether'=>      '0',
-         'wei'=>          '1',
-         'kwei'=>         '1000',
-         'Kwei'=>         '1000',
-         'babbage'=>      '1000',
-         'femtoether'=>   '1000',
-         'mwei'=>        '1000000',
-         'Mwei'=>         '1000000',
-         'lovelace'=>     '1000000',
-         'picoether'=>    '1000000',
-         'gwei'=>         '1000000000',
-         'Gwei'=>         '1000000000',
-         'shannon'=>      '1000000000',
-         'nanoether'=>    '1000000000',
-         'nano'=>         '1000000000',
-         'szabo'=>        '1000000000000',
-         'microether'=>   '1000000000000',
-         'micro'=>        '1000000000000',
-         'finney'=>       '1000000000000000',
-         'milliether'=>    '1000000000000000',
-         'milli'=>         '1000000000000000',
-         'ether'=>        '1000000000000000000',
-         'kether'=>       '1000000000000000000000',
-         'grand'=>        '1000000000000000000000',
-         'mether'=>       '1000000000000000000000000',
-         'gether'=>       '1000000000000000000000000000',
-         'tether'=>       '1000000000000000000000000000000'
-     ];
 
      /**
-      * Converts Numerical Hex String to Float
-      * @param  String $hex numerical hex String
-      * @return float decimal amount
+      * Execute Web3 Geth Command on remote server
+      * @param  string $cmd javascript code
+      * @return string      return string from server
       */
-     public function hexToFloat($hex)
+     public function gethExec($cmd)
      {
-         $dec = 0;
-         $len = strlen($hex);
-         for ($i = 1; $i <= $len; $i++) {
-             $dec = bcadd($dec, bcmul(strval(hexdec($hex[$i - 1])), bcpow('16', strval($len - $i))));
-         }
-         return (float)$dec;
-     }
-
-     /**
-      * Obtain an Address Account balance
-      * @param  string $address  account address
-      * @param  string $unitType unit of coin measurement
-      * @return String           hex string returned
-      */
-     public function getAccountBalance($address, $unitType='ether')
-     {
-         $result = $this->exec('eth_getBalance', [$address, 'latest']);
-         $balance = $this->hexToFloat($result) / (float)$this->unitMap[$unitType];
-         return $balance;
-     }
-
-     /**
-      * Execute RPC command
-      * @param  String $command RPC command function namespace
-      * @param  String or array $params  Optional parameters to pass to RPC
-      * @return String
-      */
-     public function exec($command, $params='')
-     {
-         return ($params=='') ? $this->rpc->execute($command) : $this->rpc->execute($command, $params);
-     }
-
-     public function gethExec()
-     {
-         exec("geth --exec 'web3.eth.getBalance(\"0x849189f1a878ec0fc15ac415bd58395f8aa1ca61\")' attach http://107.170.83.148:8545");
+         $cmd = preg_replace('/\s+/', ' ', $cmd);
+         $cmd = str_replace("'","\\'",$cmd);
+         return exec("geth --exec '".trim($cmd)."' attach http://".$this->config['node']['host'].":".$this->config['node']['port']);
      }
 
     /**
@@ -98,12 +29,6 @@ class EthereumClient
     public function __construct($url)
     {
         $this->config = $url['ethereum'];
-        $this->rpc = new Client($url['ethereum']['node']['url'].':'.$url['ethereum']['node']['port']);
-        $this->web3 = [
-            'host' => $url['ethereum']['jsnode']['url'],
-            'port' => intval($url['ethereum']['jsnode']['port']),
-            'local' => $url['ethereum']['jsnode']['fromurl']
-        ];
         return $this;
     }
 }
