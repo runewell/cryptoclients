@@ -7,9 +7,11 @@ use JsonRPC\Client;
 class EthereumClient
 {
     /**
-     * Main Obj
+     * Initial Variables
      */
-    protected $main;
+     protected $config;
+     protected $rpc;
+     protected $web3 = [];
 
     /**
      * Ethereum Unit Map
@@ -80,7 +82,12 @@ class EthereumClient
       */
      public function exec($command, $params='')
      {
-         return ($params=='') ? $this->main->execute($command) : $this->main->execute($command, $params);
+         return ($params=='') ? $this->rpc->execute($command) : $this->rpc->execute($command, $params);
+     }
+
+     public function gethExec()
+     {
+         exec("geth --exec 'web3.eth.getBalance(\"0x849189f1a878ec0fc15ac415bd58395f8aa1ca61\")' attach http://107.170.83.148:8545");
      }
 
     /**
@@ -90,7 +97,13 @@ class EthereumClient
      */
     public function __construct($url)
     {
-        $this->main = new Client($url);
+        $this->config = $url['ethereum'];
+        $this->rpc = new Client($url['ethereum']['node']['url'].':'.$url['ethereum']['node']['port']);
+        $this->web3 = [
+            'host' => $url['ethereum']['jsnode']['url'],
+            'port' => intval($url['ethereum']['jsnode']['port']),
+            'local' => $url['ethereum']['jsnode']['fromurl']
+        ];
         return $this;
     }
 }
