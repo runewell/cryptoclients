@@ -18,6 +18,7 @@ class EthereumClient
      {
          $cmd = preg_replace('/\s+/', ' ', $cmd);
          $cmd = str_replace("'","\\'",$cmd);
+         echo "geth --exec '".trim($cmd)."' attach http://".$this->config['node']['host'].":".$this->config['node']['port'];
          return exec("geth --exec '".trim($cmd)."' attach http://".$this->config['node']['host'].":".$this->config['node']['port']);
      }
 
