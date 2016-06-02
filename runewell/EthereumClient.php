@@ -16,9 +16,12 @@ class EthereumClient
       */
      public function gethExec($cmd)
      {
+         $path = $this->config['server']['gethpath'];
+         $host = $this->config['node']['host'];
+         $port = $this->config['node']['port'];
          $cmd = preg_replace('/\s+/', ' ', $cmd);
          $cmd = str_replace("'","\\'",$cmd);
-         return exec("/usr/local/bin/geth --exec '".trim($cmd)."' attach http://".$this->config['node']['host'].":".$this->config['node']['port']);
+         return exec($path."geth --exec '".trim($cmd)."' attach http://".$host.":".$port);
      }
 
     /**
