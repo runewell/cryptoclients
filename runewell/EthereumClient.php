@@ -14,7 +14,7 @@ class EthereumClient
       * @param  string $cmd javascript code
       * @return string      return string from server
       */
-     public function gethExec($cmd)
+     public function exec($cmd)
      {
          $path = $this->config['server']['gethpath'];
          $host = $this->config['node']['host'];
