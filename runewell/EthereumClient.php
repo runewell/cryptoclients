@@ -19,8 +19,8 @@ class EthereumClient
          $path = $this->config['server']['gethpath'];
          $host = $this->config['node']['host'];
          $port = $this->config['node']['port'];
-         $cmd = preg_replace('/\s+/', ' ', $cmd);
-         $cmd = str_replace("'","\\'",$cmd);
+         $cmd = trim(preg_replace('/\s+/g', ' ', $cmd));
+         $cmd = str_replace("'","\'",$cmd);
          return exec($path."geth --exec '".trim($cmd)."' attach http://".$host.":".$port);
      }
 
